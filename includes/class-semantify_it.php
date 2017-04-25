@@ -1,4 +1,9 @@
 <?php
+require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-registry.php';
+
+
+use \Registry;
+
 
 /**
  * The file that defines the core plugin class
@@ -71,7 +76,10 @@ class Semantify_it {
 		$this->plugin_name = 'semantify_it';
 		$this->version = '1.0.0';
 
-		$this->load_dependencies();
+        Registry::set("plugin_name",$this->plugin_name);
+        Registry::set("version",$this->version);
+
+        $this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
@@ -119,7 +127,15 @@ class Semantify_it {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-semantify_it-public.php';
 
-		$this->loader = new Semantify_it_Loader();
+        /**
+         * The class responsible for defining with smemantify it
+         */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/semantify-api-php/SemantifyIt.php';
+
+
+
+
+        $this->loader = new Semantify_it_Loader();
 
 	}
 
@@ -154,7 +170,19 @@ class Semantify_it {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-	}
+        /**
+         * Add menu item
+         */
+        $this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
+
+        /**
+         *  Add Settings link to the plugin
+         */
+        $plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
+        $this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
+
+
+    }
 
 	/**
 	 * Register all of the hooks related to the public-facing functionality
