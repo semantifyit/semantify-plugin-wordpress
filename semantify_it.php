@@ -13,11 +13,11 @@
  * @package           Semantify_it
  *
  * @wordpress-plugin
- * Plugin Name:       semantify it
+ * Plugin Name:       semantify.it
  * Plugin URI:        www.semantify.it
- * Description:       Deploy your annotations from semantify.it to your typo3 website.
+ * Description:       Deploy your annotations from semantify.it to your wordpress website.
  * Version:           1.0.0
- * Author:            Richard Dvorsky
+ * Author:            STI
  * Author URI:        www.semantify.it
  * Text Domain:       semantify_it
  * Domain Path:       /languages
