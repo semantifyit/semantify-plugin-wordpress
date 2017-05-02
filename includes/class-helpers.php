@@ -1,0 +1,138 @@
+<?php
+
+class Helpers
+{
+    /**
+     * The ID of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string $plugin_name The ID of this plugin.
+     */
+    private $plugin_name;
+
+    /**
+     * The version of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string $version The current version of this plugin.
+     */
+    private $version;
+
+
+    public function __construct($plugin_name, $version)
+    {
+        $this->plugin_name = $plugin_name;
+        $this->version = $version;
+    }
+
+
+    public function securityCheck($POST)
+    {
+        /*
+        $retrieved_nonce = $POST['_wpnonce'];
+        if (!wp_verify_nonce($retrieved_nonce)){
+        echo '<div class="error error-warning"><p>'.__('CRSF Forgery!', 'wp_schematize').'</p></div>';
+        exit;
+        die();
+        }
+        */
+
+        if (count(@$POST["data"]) == 0) {
+            $this->displayMessage("notice", __('No data received', 'wp_schematize'));
+        }
+
+    }
+
+    public function displayMessage($type,$message){
+
+        $class="";
+        switch($type){
+            case "notice":
+                $class="notice notice-warning";
+                break;
+
+            case "error":
+                $class="error error-warning";
+                break;
+
+            case "success":
+                $class="notice notice-success";
+                break;
+
+            case "info":
+                $class="notice notice-info";
+                break;
+        }
+
+
+        echo '<div class="'.$class.'"><p>'.$message.'</p></div>';
+        exit;
+        die();
+    }
+
+    public function saveContent($slug, $content){
+
+        if(@$this->postConfig["type"] == "meta"){
+            if(!$this->isSavedContent($slug)){
+                return add_post_meta( $this->postConfig["postid"], $this->plugin_name."-".$slug, $content, true);
+            }
+            else{
+                return update_post_meta( $this->postConfig["postid"], $this->plugin_name."-".$slug, $content );
+            }
+        }else{
+            if(!$this->isSavedContent($slug)){
+                return add_option($this->plugin_name."-".$slug, $content);
+            }
+            else{
+                return update_option( $this->plugin_name."-".$slug, $content);
+            }
+        }
+    }
+
+    public function deleteContent($slug){
+
+        if(@$this->postConfig["type"] == "meta"){
+            return delete_post_meta( $this->postConfig["postid"], $this->plugin_name."-".$slug);
+        }else{
+            return delete_option( $this->plugin_name."-".$slug);
+        }
+    }
+
+    public function loadContent($slug){
+
+        if(@$this->postConfig["type"] == "meta"){
+            $raw = get_post_meta( $this->postConfig["postid"], $this->plugin_name."-".$slug, true );
+        }
+        else{
+            $raw = get_option($this->plugin_name."-".$slug);
+        }
+
+        if(empty($raw)){
+            return false;
+        }
+        else{
+            return $raw;
+        }
+
+    }
+
+    public function isContentSaved($slug){
+
+        if(@$this->postConfig["type"] == "meta"){
+            $raw = get_post_meta( $this->postConfig["postid"], $this->plugin_name."-".$slug, true );
+        }
+        else{
+            $raw = get_option($this->plugin_name."-".$slug);
+        }
+
+        if(empty($raw)){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
+}
