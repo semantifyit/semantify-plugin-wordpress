@@ -2,3 +2,46 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+.container{
+    margin-right: 20px;
+}
+
+.spinner{
+    float:none;
+    width:auto;
+    height:auto;
+    padding:15px 0 10px 50px;
+    background-position:0px 0;
+    display: inline-block;
+}
+
+table.form-table tr td:first-child{
+    width:200px;
+}
+
+.postbox form button.button-primary, .postbox div.form button.button-primary{
+    margin-top: 10px;
+}
+
+.hide{
+    display: none;
+}
+
+.notice, div.error, div.updated {
+    margin: 0;
+}
+
+.logo{
+    width:100px;
+    height: auto;
+}
+
+.logo-box{
+    float: right;
+}
+
+#response-notice{
+    margin-bottom: 15px;
+}
+
