@@ -32,14 +32,15 @@
     <div class="inside">
         <h3><span><?php esc_attr_e( 'Website API Key', $this->plugin_name ); ?></span></h3>
 
-        <form name='load-url-form' id="load-url-form" data-target="#response-notice">
+        <form name='load-url-form' id="load-url-form" data-target="#response-notice" data-config[type]="settings">
             <?php settings_fields($this->plugin_name); ?>
             <p>
                 <?php esc_attr_e( 'Please input your Website API key to start using semantify.it on your webpage. If you don\'t have a API key please visit', $this->plugin_name ); ?> <a href="https://www.semantify.it">https://www.semantify.it</a>
             </p>
 
             <input type="hidden" name="action" value="save_api_key">
-            <input type="url" name="data[api_key]" class="code large-text" value="">
+            <input type="hidden" name="config[type]" value="settings">
+            <input type="text" name="data[api_key]" class="code large-text" value="<?php echo $this->f->loadContent('api_key'); ?>">
             <button class="button-primary" id="form-save"><?php esc_attr_e( 'Save' ); ?></button>
             <div id="spinner" class="spinner"></div>
         </form>
