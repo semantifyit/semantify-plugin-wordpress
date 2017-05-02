@@ -128,6 +128,11 @@ class Semantify_it {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-semantify_it-public.php';
 
         /**
+         * Helpers class for wordpress
+         */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/helpers.php';
+
+        /**
          * The class responsible for defining with smemantify it
          */
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/semantify-api-php/SemantifyIt.php';
@@ -180,6 +185,13 @@ class Semantify_it {
          */
         $plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
         $this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
+
+        $ajax_actions = array('save_api_key');
+        foreach ($ajax_actions as $ajax_action){
+            $this->loader->add_action( 'wp_ajax_'.$ajax_action, $plugin_admin, 'prefix_ajax_'.$ajax_action);
+            $this->loader->add_action( 'wp_ajax_nopriv_'.$ajax_action,  $plugin_admin,'prefix_ajax_'.$ajax_action);
+        }
+
 
 
     }
