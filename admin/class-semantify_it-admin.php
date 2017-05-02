@@ -40,6 +40,13 @@ class Semantify_it_Admin {
 	 */
 	private $version;
 
+
+    /**
+     * @var \Helpers
+     * helper variable
+     */
+    private $f;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -51,8 +58,9 @@ class Semantify_it_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
+        $this->f = new Helpers( $plugin_name, $version);
 
-	}
+    }
 
 	/**
 	 * Register the stylesheets for the admin area.
@@ -97,7 +105,6 @@ class Semantify_it_Admin {
 		 */
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/semantify_it-admin.js', array( 'jquery' ), $this->version, false );
-        wp_enqueue_media();
 	}
 
 
@@ -151,6 +158,12 @@ class Semantify_it_Admin {
 
 
 
+    
+
+
+
+
+
 
     /**
      *  AJAX calls
@@ -159,8 +172,8 @@ class Semantify_it_Admin {
 
     public function prefix_ajax_save_api_key()
     {
-        $this->securityCheck($_POST);
-        include_once 'ajax/save_api_key.php';
+        $this->f->securityCheck($_POST);
+        include_once 'ajax/save.php';
     }
 
 
