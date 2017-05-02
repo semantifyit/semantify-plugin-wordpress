@@ -20,6 +20,24 @@ class Helpers
      */
     private $version;
 
+    private $config;
+
+    /**
+     * @return mixed
+     */
+    public function getConfig()
+    {
+        return $this->config;
+    }
+
+    /**
+     * @param mixed $config
+     */
+    public function setConfig($config)
+    {
+        $this->config = $config;
+    }
+
 
     public function __construct($plugin_name, $version)
     {
@@ -74,15 +92,17 @@ class Helpers
 
     public function saveContent($slug, $content){
 
-        if(@$this->postConfig["type"] == "meta"){
-            if(!$this->isSavedContent($slug)){
-                return add_post_meta( $this->postConfig["postid"], $this->plugin_name."-".$slug, $content, true);
+
+
+        if(@$this->config["type"] == "meta"){
+            if(!$this->isContentSaved($slug)){
+                return add_post_meta( $this->config["postid"], $this->plugin_name."-".$slug, $content, true);
             }
             else{
-                return update_post_meta( $this->postConfig["postid"], $this->plugin_name."-".$slug, $content );
+                return update_post_meta( $this->config["postid"], $this->plugin_name."-".$slug, $content );
             }
         }else{
-            if(!$this->isSavedContent($slug)){
+            if(!$this->isContentSaved($slug)){
                 return add_option($this->plugin_name."-".$slug, $content);
             }
             else{
@@ -93,8 +113,8 @@ class Helpers
 
     public function deleteContent($slug){
 
-        if(@$this->postConfig["type"] == "meta"){
-            return delete_post_meta( $this->postConfig["postid"], $this->plugin_name."-".$slug);
+        if(@$this->config["type"] == "meta"){
+            return delete_post_meta( $this->config["postid"], $this->plugin_name."-".$slug);
         }else{
             return delete_option( $this->plugin_name."-".$slug);
         }
@@ -102,8 +122,8 @@ class Helpers
 
     public function loadContent($slug){
 
-        if(@$this->postConfig["type"] == "meta"){
-            $raw = get_post_meta( $this->postConfig["postid"], $this->plugin_name."-".$slug, true );
+        if(@$this->config["type"] == "meta"){
+            $raw = get_post_meta( $this->config["postid"], $this->plugin_name."-".$slug, true );
         }
         else{
             $raw = get_option($this->plugin_name."-".$slug);
@@ -120,14 +140,14 @@ class Helpers
 
     public function isContentSaved($slug){
 
-        if(@$this->postConfig["type"] == "meta"){
-            $raw = get_post_meta( $this->postConfig["postid"], $this->plugin_name."-".$slug, true );
+        if(@$this->config["type"] == "meta"){
+            $raw = get_post_meta( $this->config["postid"], $this->plugin_name."-".$slug, true );
         }
         else{
             $raw = get_option($this->plugin_name."-".$slug);
         }
 
-        if(empty($raw)){
+        if($raw===false){
             return false;
         }
         else{
