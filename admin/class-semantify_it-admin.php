@@ -151,4 +151,18 @@ class Semantify_it_Admin {
 
 
 
+
+    /**
+     *  AJAX calls
+     *
+     */
+
+    public function prefix_ajax_save_api_key()
+    {
+        $this->securityCheck($_POST);
+        include_once 'ajax/save_api_key.php';
+    }
+
+
+
 }
