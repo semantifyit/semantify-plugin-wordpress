@@ -130,12 +130,12 @@ class Semantify_it {
         /**
          * Helpers class for wordpress
          */
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/helpers.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-helpers.php';
 
         /**
          * The class responsible for defining with smemantify it
          */
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/semantify-api-php/SemantifyIt.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/model/domain/SemantifyItWrapper.php';
 
 
 
