@@ -39,7 +39,11 @@
             var spinner  = $(this).children(".spinner");
             spinner.addClass("is-active");
 
-            var data=$(this).serialize();
+
+            var data = $(this).serialize();
+
+            console.log(data);
+
             var div = "#response";
             if($(this).data("target")!=undefined){
                 div = $(this).data("target");
@@ -56,7 +60,7 @@
         });
 
 
-        $('body').on('click', 'div.form button', function(e)
+        $('body').on('click', 'div.form .button', function(e)
         {
 
             e.preventDefault();
@@ -67,7 +71,9 @@
             var inputs = $(this).parent().find(":input");
             var action = $(this).parent().find(":input[name='config[action]']").val();
 
-            var data=inputs.serialize()+"&action="+action;
+            var config = $(this).parent().data('config');
+
+            //var data=inputs.serialize()+config.serialize()+"&action="+action;
 
             console.log(data);
 
