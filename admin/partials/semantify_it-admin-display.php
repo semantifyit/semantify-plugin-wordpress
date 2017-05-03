@@ -40,7 +40,7 @@
 
             <input type="hidden" name="action" value="save_api_key">
             <input type="hidden" name="config[type]" value="settings">
-            <input type="text" name="data[api_key]" class="code large-text" value="<?php echo $this->f->loadContent('api_key'); ?>">
+            <input type="text" name="data[api_key]" class="code large-text" value="<?php echo $this->h->loadContent('api_key'); ?>">
             <button class="button-primary" id="form-save"><?php esc_attr_e( 'Save' ); ?></button>
             <div id="spinner" class="spinner"></div>
         </form>
