@@ -10,32 +10,32 @@
 		 
 		 //if we loaded configuration of post by meta boxes
 		 if(isset($_POST["config"])){
-			  $this->f->savePostConfig($_POST["config"]);
+			  $this->h->savePostConfig($_POST["config"]);
 		 }
 				 
-		 $form = $this->f->makeFormURL($path);
+		 $form = $this->h->makeFormURL($path);
 		 if($form===false){
-			 $this->f->displayMessage("error","<b>".__('Not valid JSON-LD!', 'wp_schematize')."</b>"."<br>JSON-LD from url: <a href='".$path."'><code>".$path."</code></a> contains:<code>".file_get_contents($path)."</code>" );
+			 $this->h->displayMessage("error","<b>".__('Not valid JSON-LD!', 'wp_schematize')."</b>"."<br>JSON-LD from url: <a href='".$path."'><code>".$path."</code></a> contains:<code>".file_get_contents($path)."</code>" );
 		 }	 
 		 
 		 
 	}elseif($_POST["data"]["local"]){
 		
 		 if(isset($_POST["config"])){
-			  $this->f->savePostConfig($_POST["config"]);
+			  $this->h->savePostConfig($_POST["config"]);
 		 }
 		
-		$loadedContent = $this->f->loadSavedContent($this->f->saveSlug);
+		$loadedContent = $this->h->loadSavedContent($this->h->saveSlug);
 
-		if(($loadedContent!==false)&&(!@$this->f->postConfig["new"]=="true")){
+		if(($loadedContent!==false)&&(!@$this->h->postConfig["new"]=="true")){
 			$path="Wordpress Database";
-			$form = $this->f->makeFormRawJson($loadedContent);
+			$form = $this->h->makeFormRawJson($loadedContent);
 		}else{
 			$path="Example file";
-			if(@$this->f->postConfig["type"] == "meta"){
-				$form = $this->f->makeFormLocal(plugin_dir_path( __FILE__ ) ."room.jsonld");
+			if(@$this->h->postConfig["type"] == "meta"){
+				$form = $this->h->makeFormLocal(plugin_dir_path( __FILE__ ) ."room.jsonld");
 			}else{
-				$form = $this->f->makeFormLocal(plugin_dir_path( __FILE__ ) ."hotel.jsonld");
+				$form = $this->h->makeFormLocal(plugin_dir_path( __FILE__ ) ."hotel.jsonld");
 			}
 		}	
 
