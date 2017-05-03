@@ -133,10 +133,13 @@ class Semantify_it {
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-helpers.php';
 
         /**
-         * The class responsible for defining with smemantify it
+         * The model responsible for dealining with smemantify it
          */
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/model/domain/SemantifyItWrapper.php';
-
+        /**
+         * The controller responsible for dealining with smemantify it model
+         */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/controller/SemantifyItWrapperController.php';
 
 
 
@@ -191,6 +194,11 @@ class Semantify_it {
             $this->loader->add_action( 'wp_ajax_'.$ajax_action, $plugin_admin, 'prefix_ajax_'.$ajax_action);
             $this->loader->add_action( 'wp_ajax_nopriv_'.$ajax_action,  $plugin_admin,'prefix_ajax_'.$ajax_action);
         }
+
+        /**
+         * load annotaitons list in posts
+         */
+        $this->loader->add_action( 'add_meta_boxes',$plugin_admin, 'add_meta_boxes_admin' );
 
 
 
