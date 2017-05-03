@@ -5,7 +5,6 @@ use \STI\SemantifyIt\SemantifyIt;
 
 require_once(__DIR__ . "/../../../vendor/semantify-api-php/SemantifyIt.php");
 
-
 /**
  * Class SemantifyItWrapper
  */
@@ -29,12 +28,8 @@ class SemantifyItWrapper extends SemantifyIt
 
         if ($key != "") {
             $this->setWebsiteApiKey($key);
-            return;
         }
 
-        $confArray = unserialize($GLOBALS['TYPO3_CONF_VARS']['EXT']['extConf']['semantify_it']);
-        $websiteApiKey = $confArray['smtf.']['WebsiteApiKey'];
-        $this->setWebsiteApiKey($websiteApiKey);
     }
 
 }
