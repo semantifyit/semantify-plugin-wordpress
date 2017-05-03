@@ -60,7 +60,7 @@
         });
 
 
-        $('body').on('click', 'div.form .button', function(e)
+        $('body').on('click', '.container div.form button', function(e)
         {
 
             e.preventDefault();
@@ -71,11 +71,9 @@
             var inputs = $(this).parent().find(":input");
             var action = $(this).parent().find(":input[name='config[action]']").val();
 
-            var config = $(this).parent().data('config');
+            var data=inputs.serialize()+"&action="+action;
 
-            //var data=inputs.serialize()+config.serialize()+"&action="+action;
-
-            console.log(data);
+            //console.log(data);
 
             var div = "#response";
             var target = $(this).parent().data("target");
