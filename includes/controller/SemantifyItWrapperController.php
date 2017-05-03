@@ -25,14 +25,11 @@ class SemantifyItWrapperController
 
     function __construct($key="")
     {
-
         if($key!=""){
             $this->model = new SemantifyItWrapper($key);
         }else{
             $this->model = new SemantifyItWrapper();
         }
-
-
     }
 
     /**
@@ -214,6 +211,13 @@ class SemantifyItWrapperController
         return $id;
     }
 
+
+    public function getAnnotation($annotation){
+        $response =  $this->model->getAnnotation($annotation);
+        return $response;
+    }
+
+
     /**
      * @param $response
      * @return mixed
@@ -272,6 +276,17 @@ class SemantifyItWrapperController
         return $data;
     }
 
+    public function cover_annotation_into_html($annotation){
+
+        $out.= '<!-- Great, right? Created with semantify.it -->
+            ';
+        $out.= '<script type="application/ld+json">';
+        $out.= $annotation;
+        $out.= '</script>';
+
+        return $out;
+
+    }
 
 
 
