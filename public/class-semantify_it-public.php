@@ -1,4 +1,6 @@
 <?php
+use \STI\SemantifyIt\Includes\Helpers;
+
 
 /**
  * The public-facing functionality of the plugin.
@@ -40,6 +42,13 @@ class Semantify_it_Public {
 	 */
 	private $version;
 
+
+    /**
+     * @var \Helpers
+     * helper variable
+     */
+    private $h;
+
 	/**
 	 * Initialize the class and set its properties.
 	 *
@@ -51,7 +60,7 @@ class Semantify_it_Public {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-
+        $this->h = new Helpers($plugin_name, $version);
 	}
 
 	/**
@@ -99,5 +108,14 @@ class Semantify_it_Public {
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/semantify_it-public.js', array( 'jquery' ), $this->version, false );
 
 	}
+
+    public function deploy_annotation(){
+
+        include_once 'partials/deploy_annotation.php';
+
+    }
+
+
+
 
 }
