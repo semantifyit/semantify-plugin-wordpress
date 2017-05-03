@@ -1,5 +1,8 @@
 <?php
 
+namespace STI\SemantifyIt\Includes;
+
+
 class Helpers
 {
     /**
@@ -63,94 +66,126 @@ class Helpers
 
     }
 
-    public function displayMessage($type,$message){
+    public function displayMessage($type, $message)
+    {
 
-        $class="";
-        switch($type){
+        $class = "";
+        switch ($type) {
             case "notice":
-                $class="notice notice-warning";
+                $class = "notice notice-warning";
                 break;
 
             case "error":
-                $class="error error-warning";
+                $class = "error error-warning";
                 break;
 
             case "success":
-                $class="notice notice-success";
+                $class = "notice notice-success";
                 break;
 
             case "info":
-                $class="notice notice-info";
+                $class = "notice notice-info";
                 break;
         }
 
 
-        echo '<div class="'.$class.'"><p>'.$message.'</p></div>';
+        echo '<div class="' . $class . '"><p>' . $message . '</p></div>';
         exit;
         die();
     }
 
-    public function saveContent($slug, $content){
+    public function makeList($annotations)
+    {
+        $list = "";
+        $last = "";
+
+        //var_dump($annotations);
+
+        foreach ($annotations as $annotation) {
+            /* section by types */
+            if ($annotation[1] == '--div--') {
+                if ($last != "") {
+                    $list .= '</optgroup>';
+                }
+
+                if ($annotation[0] == '') {
+                    $annotation[0] = __('Uncategorised', $this->plugin_name);
+                }
+
+                $list .= '<optgroup label="' . $annotation[0] . '">';
+                $last = $annotation[1];
+                continue;
+            }
+            $list .= '<option value="' . $annotation[1] . '" ' . ($annotation[1] == $annotationID ? 'selected' : '') . '>' . $annotation[0] . '</option>';
+
+        }
+        if ($last != "") {
+            $list .= '</optgroup>';
+        }
+
+        return $list;
+
+    }
 
 
+    public function saveContent($slug, $content)
+    {
 
-        if(@$this->config["type"] == "meta"){
-            if(!$this->isContentSaved($slug)){
-                return add_post_meta( $this->config["postid"], $this->plugin_name."-".$slug, $content, true);
+
+        if (@$this->config["type"] == "meta") {
+            if (!$this->isContentSaved($slug)) {
+                return add_post_meta($this->config["postid"], $this->plugin_name . "-" . $slug, $content, true);
+            } else {
+                return update_post_meta($this->config["postid"], $this->plugin_name . "-" . $slug, $content);
             }
-            else{
-                return update_post_meta( $this->config["postid"], $this->plugin_name."-".$slug, $content );
-            }
-        }else{
-            if(!$this->isContentSaved($slug)){
-                return add_option($this->plugin_name."-".$slug, $content);
-            }
-            else{
-                return update_option( $this->plugin_name."-".$slug, $content);
+        } else {
+            if (!$this->isContentSaved($slug)) {
+                return add_option($this->plugin_name . "-" . $slug, $content);
+            } else {
+                return update_option($this->plugin_name . "-" . $slug, $content);
             }
         }
     }
 
-    public function deleteContent($slug){
+    public function deleteContent($slug)
+    {
 
-        if(@$this->config["type"] == "meta"){
-            return delete_post_meta( $this->config["postid"], $this->plugin_name."-".$slug);
-        }else{
-            return delete_option( $this->plugin_name."-".$slug);
+        if (@$this->config["type"] == "meta") {
+            return delete_post_meta($this->config["postid"], $this->plugin_name . "-" . $slug);
+        } else {
+            return delete_option($this->plugin_name . "-" . $slug);
         }
     }
 
-    public function loadContent($slug){
+    public function loadContent($slug)
+    {
 
-        if(@$this->config["type"] == "meta"){
-            $raw = get_post_meta( $this->config["postid"], $this->plugin_name."-".$slug, true );
-        }
-        else{
-            $raw = get_option($this->plugin_name."-".$slug);
+        if (@$this->config["type"] == "meta") {
+            $raw = get_post_meta($this->config["postid"], $this->plugin_name . "-" . $slug, true);
+        } else {
+            $raw = get_option($this->plugin_name . "-" . $slug);
         }
 
-        if(empty($raw)){
+        if (empty($raw)) {
             return false;
-        }
-        else{
+        } else {
             return $raw;
         }
 
     }
 
-    public function isContentSaved($slug){
+    public function isContentSaved($slug)
+    {
 
-        if(@$this->config["type"] == "meta"){
-            $raw = get_post_meta( $this->config["postid"], $this->plugin_name."-".$slug, true );
-        }
-        else{
-            $raw = get_option($this->plugin_name."-".$slug);
+        if (@$this->config["type"] == "meta") {
+            $raw = get_post_meta($this->config["postid"], $this->plugin_name . "-" . $slug, true);
+        } else {
+            $raw = get_option($this->plugin_name . "-" . $slug);
         }
 
-        if($raw===false){
+        if ($raw === false) {
             return false;
-        }
-        else{
+        } else {
             return true;
         }
     }
