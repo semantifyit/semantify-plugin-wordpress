@@ -1,4 +1,6 @@
 <?php
+use \STI\SemantifyIt\Includes\Helpers;
+
 
 /**
  * The admin-specific functionality of the plugin.
@@ -45,7 +47,7 @@ class Semantify_it_Admin {
      * @var \Helpers
      * helper variable
      */
-    private $f;
+    private $h;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -58,7 +60,8 @@ class Semantify_it_Admin {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
-        $this->f = new Helpers( $plugin_name, $version);
+        $this->h = new Helpers($plugin_name, $version);
+
 
     }
 
@@ -158,7 +161,28 @@ class Semantify_it_Admin {
 
 
 
-    
+    /* Meta box setup function. */
+    public function add_meta_boxes_admin() {
+
+        $post_types=get_post_types(array('public'=>true));
+
+        foreach( $post_types as $post_type )
+        {
+            add_meta_box(
+                'semantify_it', // $id
+                __( 'semantify.it' ), // $title
+                array( $this, 'meta_boxes_display' ), // $callback
+                $post_type,
+                'normal',
+                'high'
+            );
+        }
+
+    }
+
+    function meta_boxes_display($post) {
+        include_once 'partials/meta_boxes_display.php';
+    }
 
 
 
@@ -172,7 +196,7 @@ class Semantify_it_Admin {
 
     public function prefix_ajax_save_api_key()
     {
-        $this->f->securityCheck($_POST);
+        $this->h->securityCheck($_POST);
         include_once 'ajax/save.php';
     }
 
