@@ -23,7 +23,7 @@ class Helpers
      */
     private $version;
 
-    private $config;
+    public $config;
 
     /**
      * @return mixed
@@ -51,17 +51,18 @@ class Helpers
 
     public function securityCheck($POST)
     {
-        /*
-        $retrieved_nonce = $POST['_wpnonce'];
-        if (!wp_verify_nonce($retrieved_nonce)){
-        echo '<div class="error error-warning"><p>'.__('CRSF Forgery!', 'wp_schematize').'</p></div>';
-        exit;
-        die();
+
+        if (!check_ajax_referer( 'semantify_it_ajax', '_wpnonce_semantify_it' )){
+            $this->displayMessage("error", __('CRSF Forgery! Somebody is trying to alter your data! The action was not executed.', $this->plugin_name));
+            exit;
+            die();
         }
-        */
+
+
+        //var_dump($POST);
 
         if (count(@$POST["data"]) == 0) {
-            $this->displayMessage("notice", __('No data received', 'wp_schematize'));
+            $this->displayMessage("notice", __('No data received. Something is wrong. Please contact us by email info@semantify.it', $this->plugin_name));
         }
 
     }
@@ -94,7 +95,7 @@ class Helpers
         die();
     }
 
-    public function makeList($annotations)
+    public function makeList($annotations,$annotationID)
     {
         $list = "";
         $last = "";
