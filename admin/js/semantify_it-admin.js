@@ -31,6 +31,7 @@
 
     $(window).load(function ()
     {
+        protect_messages();
 
         $('body').on('submit', '.container form', function(e)
         {
@@ -51,7 +52,6 @@
 
             $.post(ajaxurl, data, function (response)
             {
-
                 $(div).html(response);
                 $(div).show( "slow" );
                 spinner.removeClass("is-active");
@@ -130,6 +130,17 @@
 
     });
 
+    function protect_messages(){
+        /*
+        var fullHtml;
+        jQuery(".se").each(function() {
+            fullHtml += jQuery(this).clone();
+            jQuery(this).remove();
+        });
+        jQuery(".seresponse").append(fullHtml);
+        */
+    }
 
 
 })( jQuery );
+
