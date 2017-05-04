@@ -9,6 +9,9 @@ use \STI\SemantifyIt\Domain\Model\SemantifyItWrapper;
 class SemantifyItWrapperController
 {
 
+    /**
+     * @var \STI\SemantifyIt\Domain\Model\SemantifyItWrapper
+     */
     public $model;
 
     public $plugin_name;
@@ -20,11 +23,17 @@ class SemantifyItWrapperController
      *
      * @var bool
      */
-    private $warnings = true;
+    private $warnings = false;
 
 
+    /**
+     * SemantifyItWrapperController constructor.
+     *
+     * @param string $key
+     */
     function __construct($key="")
     {
+
         if($key!=""){
             $this->model = new SemantifyItWrapper($key);
         }else{
@@ -47,6 +56,7 @@ class SemantifyItWrapperController
     {
         $this->model = $model;
     }
+
 
 
     /**
@@ -101,6 +111,23 @@ class SemantifyItWrapperController
         }
     }
 
+    public function isApiKeyValid(){
+        $json = $this->model->getAnnotationList();
+        if (!$json) {
+            return false;
+        }
+        return true;
+    }
+
+    public function isURLAnnotationAvailable($url){
+        $json = $this->model->getAnnotationByURL($url);
+        if (!$json) {
+            return false;
+        }
+        return true;
+    }
+
+
     /**
      *
      * get list of annotations based on key
@@ -139,7 +166,7 @@ class SemantifyItWrapperController
         //var_dump($annotationListFromAPI);
 
         //if there is no error
-        if (($annotationListFromAPI->error == "") && ($json != false)) {
+        if ((@$annotationListFromAPI->error == "") && ($json != false)) {
             //var_dump($annotationListFromAPI);
 
             $last = "";
@@ -200,6 +227,7 @@ class SemantifyItWrapperController
     }
 
     /**
+     *
      * function for posting annotation
      *
      * @param $annotation
@@ -212,10 +240,31 @@ class SemantifyItWrapperController
     }
 
 
+    /**
+     *
+     * getting annotation by id
+     *
+     * @param $annotation
+     * @return \STI\SemantifyIt\json
+     */
     public function getAnnotation($annotation){
         $response =  $this->model->getAnnotation($annotation);
         return $response;
     }
+
+    /**
+     *
+     * getting annotation by url
+     *
+     * @param $url
+     * @return string
+     */
+    public function getAnnotationByURL($url){
+        $response =  $this->model->getAnnotationByURL($url);
+        return $response;
+    }
+
+
 
 
     /**
