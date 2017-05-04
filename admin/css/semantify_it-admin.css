@@ -3,28 +3,28 @@
  * included in this file.
  */
 
-.container{
+.container {
     margin-right: 20px;
 }
 
-.spinner{
-    float:none;
-    width:auto;
-    height:auto;
-    padding:15px 0 10px 50px;
-    background-position:0px 0;
+.spinner {
+    float: none;
+    width: auto;
+    height: auto;
+    padding: 15px 0 10px 50px;
+    background-position: 0px 0;
     display: inline-block;
 }
 
-table.form-table tr td:first-child{
-    width:200px;
+table.form-table tr td:first-child {
+    width: 200px;
 }
 
-.postbox form button.button-primary, .postbox div.form button.button-primary{
+.postbox form button.button-primary, .postbox div.form button.button-primary {
     margin-top: 10px;
 }
 
-.hide{
+.hide {
     display: none;
 }
 
@@ -32,16 +32,40 @@ table.form-table tr td:first-child{
     margin: 0;
 }
 
-.logo{
-    width:100px;
+.logo {
+    width: 100px;
     height: auto;
 }
 
-.logo-box{
+.logo-box {
     float: right;
 }
 
-#response-notice{
+#response-notice {
     margin-bottom: 15px;
 }
 
+.snotice, div.serror, div.supdated {
+    background: #fff;
+    border-left: 4px solid #fff;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, .1);
+    margin: 0;
+    padding: 1px 12px;
+}
+
+.snotice-warning {
+    border-left-color: #ffb900;
+}
+
+.snotice-info {
+    border-left-color: #00a0d2;
+}
+
+.snotice-success {
+    border-left-color: #46b450;
+}
+
+.snotice-error, div.serror {
+    border-left-color: #dc3232;
+}

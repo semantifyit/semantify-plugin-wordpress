@@ -73,26 +73,24 @@ class Helpers
         $class = "";
         switch ($type) {
             case "notice":
-                $class = "notice notice-warning";
+                $class = "snotice snotice-warning";
                 break;
 
             case "error":
-                $class = "error error-warning";
+                $class = "serror serror-warning";
                 break;
 
             case "success":
-                $class = "notice notice-success";
+                $class = "snotice snotice-success";
                 break;
 
             case "info":
-                $class = "notice notice-info";
+                $class = "snotice snotice-info";
                 break;
         }
 
 
         echo '<div class="' . $class . '"><p>' . $message . '</p></div>';
-        exit;
-        die();
     }
 
     public function makeList($annotations,$annotationID)
