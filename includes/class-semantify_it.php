@@ -1,8 +1,4 @@
 <?php
-require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-registry.php';
-
-
-use \Registry;
 
 
 /**
@@ -74,10 +70,7 @@ class Semantify_it {
 	public function __construct() {
 
 		$this->plugin_name = 'semantify_it';
-		$this->version = '1.0.0';
-
-        Registry::set("plugin_name",$this->plugin_name);
-        Registry::set("version",$this->version);
+		$this->version = '0.1.0';
 
         $this->load_dependencies();
 		$this->set_locale();
