@@ -30,17 +30,27 @@
 
 <div class="postbox" id="load-url-box">
     <div class="inside">
-        <h3><span><?php esc_attr_e( 'Website API Key', $this->plugin_name ); ?></span></h3>
+
 
         <form name='api-key' id="api-key" data-target="#response-notice" >
             <?php echo wp_nonce_field( 'semantify_it_ajax', '_wpnonce_semantify_it' ); ?>
+            <input type="hidden" name="action" value="save_api_key">
+            <input type="hidden" name="config[type]" value="settings">
+            <h4><span><?php esc_attr_e( 'Website API Key', $this->plugin_name ); ?></span></h4>
             <p>
                 <?php esc_attr_e( 'Please input your Website API key to start using semantify.it on your webpage. If you don\'t have a API key please visit', $this->plugin_name ); ?> <a href="https://www.semantify.it">https://www.semantify.it</a>
             </p>
+            <input type="text" name="data[api_key]" class="code large-text" value="<?php echo $this->h->loadContent('api_key'); ?>"><br/>
+            <br/>
+            <h4><span><?php esc_attr_e( 'Automatic Annotation search by URL', $this->plugin_name ); ?></span></h4>
+            <p>
+                <?php esc_attr_e('Please check this checkbox if you want to have dynamic search for your annotation on semantify.it by the URL', $this->plugin_name ); ?>
+            </p>
+            <input type="hidden" name="data[annotationByURL]" value="0" />
+            <input type="checkbox" name="data[annotationByURL]" class="" value="1" <?php echo ($this->h->loadContent('annotationByURL')=='1' ? 'checked' : '') ?>></br></br>
 
-            <input type="hidden" name="action" value="save_api_key">
-            <input type="hidden" name="config[type]" value="settings">
-            <input type="text" name="data[api_key]" class="code large-text" value="<?php echo $this->h->loadContent('api_key'); ?>">
+
+
             <button class="button-primary" id="form-save"><?php esc_attr_e( 'Save' ); ?></button>
             <div id="spinner" class="spinner"></div>
         </form>
