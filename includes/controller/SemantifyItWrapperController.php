@@ -121,7 +121,8 @@ class SemantifyItWrapperController
 
     public function isURLAnnotationAvailable($url){
         $json = $this->model->getAnnotationByURL($url);
-        if (!$json) {
+        $content = @json_decode($json);
+        if ((!$json) || (isset($content->message))) {
             return false;
         }
         return true;
@@ -327,6 +328,7 @@ class SemantifyItWrapperController
 
     public function cover_annotation_into_html($annotation){
 
+        $out="";
         $out.= '<!-- Great, right? Created with semantify.it -->
             ';
         $out.= '<script type="application/ld+json">';
