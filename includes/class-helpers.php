@@ -133,16 +133,22 @@ class Helpers
 
         if (@$this->config["type"] == "meta") {
             if (!$this->isContentSaved($slug)) {
-                return add_post_meta($this->config["postid"], $this->plugin_name . "-" . $slug, $content, true);
+                $out = add_post_meta($this->config["postid"], $this->plugin_name . "-" . $slug, $content, true);
             } else {
-                return update_post_meta($this->config["postid"], $this->plugin_name . "-" . $slug, $content);
+                $out = update_post_meta($this->config["postid"], $this->plugin_name . "-" . $slug, $content);
             }
         } else {
             if (!$this->isContentSaved($slug)) {
-                return add_option($this->plugin_name . "-" . $slug, $content);
+                $out = add_option($this->plugin_name . "-" . $slug, $content);
             } else {
-                return update_option($this->plugin_name . "-" . $slug, $content);
+                $out = update_option($this->plugin_name . "-" . $slug, $content);
             }
+        }
+
+        if ($out === false) {
+            return false;
+        } else {
+            return true;
         }
     }
 
@@ -165,7 +171,7 @@ class Helpers
             $raw = get_option($this->plugin_name . "-" . $slug);
         }
 
-        if (empty($raw)) {
+        if ($raw === false) {
             return false;
         } else {
             return $raw;
@@ -181,6 +187,8 @@ class Helpers
         } else {
             $raw = get_option($this->plugin_name . "-" . $slug);
         }
+
+
 
         if ($raw === false) {
             return false;
