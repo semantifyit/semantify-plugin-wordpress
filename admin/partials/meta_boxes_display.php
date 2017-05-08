@@ -31,7 +31,7 @@ $list        = $this->h->makeList($annotations,$annotationID);
 
 
         <div class="inside">
-            <div class="seresponse"><?php include_once "meta_boxes_notices.php"; ?></div>
+            <div class="seresponse"><?php include_once "semantify_it-admin-notices.php"; ?><?php include_once "meta_boxes_notices.php"; ?></div>
             <h3><span><?php esc_attr_e( 'Annotation deployment', $this->plugin_name ); ?></span></h3>
             <p>
                 <?php esc_attr_e( 'Choose an annotation from the list for your webpage content.',  $this->plugin_name ); ?>
