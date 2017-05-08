@@ -16,7 +16,7 @@
  * Plugin Name:       semantify.it
  * Description:       Deploy your annotations from semantify.it to your wordpress website.
  * Version:           0.1.0
- * Author:            STI
+ * Author:            semantify.it
  * Author URI:        www.semantify.it
  * Text Domain:       semantify_it
  * Domain Path:       /languages
