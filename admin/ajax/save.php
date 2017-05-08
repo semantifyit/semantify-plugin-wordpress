@@ -15,7 +15,10 @@
 
 	if(isset($_POST["data"])){
 		foreach($_POST["data"] as $key => $data){
-            $save = $this->h->saveContent($key, $data);
+            $new_save = $this->h->saveContent($key, trim($data));
+            if($new_save==1){
+                $save = true;
+			}
 		}
 	}
 
@@ -28,11 +31,11 @@
 
 
 
-	if($save){
+	//if($save){
 		$this->h->displayMessage("success","<b>".__('Success!', $this->plugin_name)."</b>"."<br>".__('Everything was successfully saved into Wordpress Database.', $this->plugin_name) );
-	}else{
-		$this->h->displayMessage("info","<b>".__('Not changed', $this->plugin_name)."</b>"."<br>".__('The content was not saved into Wordpress Database because there was a no change.', $this->plugin_name) );
-	}
+	//}else{
+	//		$this->h->displayMessage("info","<b>".__('Not changed', $this->plugin_name)."</b>"."<br>".__('The content was not saved into Wordpress Database because there was a no change.', $this->plugin_name) );
+	//}
 
 
 ?>	
