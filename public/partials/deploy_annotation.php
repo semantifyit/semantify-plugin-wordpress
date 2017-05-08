@@ -10,7 +10,18 @@ use \STI\SemantifyIt\Controller\SemantifyItWrapperController;
 
 
 $postid = get_the_ID();
-if(isset($postid)) {
+
+if(!$postid){
+    $postid = get_option( 'page_on_front' );
+}
+
+if( (!$postid) || ($postid=='0') || ($postid==false) || ($postid=='') ){
+    $postid = get_option( 'page_for_posts' );
+}
+
+
+
+if(!( (!$postid) || ($postid=='0') || ($postid==false) || ($postid=='') )) {
 
     $apiKey = $this->h->loadContent('api_key');
 
@@ -28,6 +39,7 @@ if(isset($postid)) {
 
     $annotationID = $this->h->loadContent('annotationID');
 
+    $annotation = '';
     if (($annotationID != '') || ($annotationID != '0')) {
        /* load annotation by id */
 
@@ -41,7 +53,7 @@ if(isset($postid)) {
         //echo "#annotation:".$annotation."#";
     }
 
-    if (($annotation != '') || ($annotation != '0')) {
+    if (($annotation != '') || ($annotation != '0') || ($annotation != NULL)) {
             $html = $Semantify->cover_annotation_into_html($annotation);
             echo $html;
     }
