@@ -65,6 +65,15 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-semantify_it.php';
  */
 function run_semantify_it() {
 
+    $development = array("sti.dev", "staging.semantify.it", "demo.semantify.it");
+
+    //switch to stagging server if it is on the development server
+    if(in_array($_SERVER['HTTP_HOST'],$development)) {
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+    }
+
+
 	$plugin = new Semantify_it();
 	$plugin->run();
 
