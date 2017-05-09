@@ -113,7 +113,8 @@ class SemantifyItWrapperController
 
     public function isApiKeyValid(){
         $json = $this->model->getAnnotationList();
-        if (!$json) {
+        $content = @json_decode($json);
+        if ((!$json) || (isset($content->message))) {
             return false;
         }
         return true;
@@ -162,6 +163,10 @@ class SemantifyItWrapperController
             return $annotationList;
         }
         $annotationListFromAPI = json_decode($json);
+
+        if ((isset($annotationListFromAPI->message))) {
+            return $annotationList;
+        }
 
         //echo is_array($annotationListFromAPI);
         //var_dump($annotationListFromAPI);
