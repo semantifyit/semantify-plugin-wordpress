@@ -1,6 +1,6 @@
 <?php
 
-$admin = 1;
+
 
 /**
  * Provide a admin area view for the plugin
@@ -19,7 +19,7 @@ use \STI\SemantifyIt\Controller\SemantifyItWrapperController;
 $apikey = $this->h->loadContent('api_key');
 $Semantify = new SemantifyItWrapperController($apikey);
 
-
+$admin = 1;
 
 
 
