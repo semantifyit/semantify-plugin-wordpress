@@ -2,6 +2,7 @@
 
 use \STI\SemantifyIt\Controller\SemantifyItWrapperController;
 
+$admin = 0;
 $apikey = $this->h->loadContent('api_key');
 $annotationByURL = $this->h->loadContent('annotationByURL');
 
