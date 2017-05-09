@@ -13,15 +13,7 @@ if(($apikey=='')||($apikey=='0')){
     die();
 }
 
-/*
-if(count($annotations)<=3){
-    if(!$Semantify->isApiKeyValid()){
-        echo"</br>";
-        $this->h->displayMessage("error","<b>".__('Wrong API key', $this->plugin_name)."</b>"."<br>".__('You added an API which is not a correct one. Please add a new API key in ', $this->plugin_name)."<a href='".$admin_url."'>Settings</a>" );
-        die();
-    }
-}
-*/
+
 
 if($annotationByURL){
     echo"</br>";
