@@ -1,5 +1,7 @@
 <?php
 
+$admin = 1;
+
 /**
  * Provide a admin area view for the plugin
  *
@@ -11,6 +13,16 @@
  * @package    Semantify_it
  * @subpackage Semantify_it/admin/partials
  */
+
+use \STI\SemantifyIt\Controller\SemantifyItWrapperController;
+
+$apikey = $this->h->loadContent('api_key');
+$Semantify = new SemantifyItWrapperController($apikey);
+
+
+
+
+
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
@@ -25,7 +37,8 @@
 
     <h2>General settings</h2>
     <p><?php esc_attr_e( 'Deploy your annotations to your wordpress website', $this->plugin_name ); ?></p>
-    <div class="seresponse"><?php include_once "semantify_it-admin-notices.php"; ?></div>
+
+    <div class="response"><?php include_once "semantify_it-admin-notices.php"; ?></div>
     <div id="response-notice" class="response hide"></div>
 
 <div class="postbox" id="load-url-box">
