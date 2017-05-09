@@ -16,7 +16,7 @@ $admin_url = admin_url( 'admin.php?page=' . $this->plugin_name );
     }
 
 
-if( ((isset($annotations)) && (count($annotations)<=3)) || $admin ){
+if( ((isset($annotations)) && (count($annotations)<=3)) || (isset($admin)) ){
 
     if(!$Semantify->isApiKeyValid()){
         echo"</br>";
