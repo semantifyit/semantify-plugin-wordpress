@@ -69,6 +69,7 @@ class Semantify_it {
 	 */
 	public function __construct() {
 
+
 		$this->plugin_name = 'semantify_it';
 		$this->version = '0.1.0';
 

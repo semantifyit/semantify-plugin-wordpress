@@ -24,6 +24,7 @@ class SemantifyItWrapper extends SemantifyIt
         if(in_array($_SERVER['HTTP_HOST'],$development)) {
             $this->setLive(false);
             $this->setError(true);
+            error_reporting(E_ALL);
         }
 
 
