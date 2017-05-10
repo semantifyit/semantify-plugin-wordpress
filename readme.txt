@@ -4,7 +4,7 @@ Tags: annotations, schema.org, semantify
 Plugin Name:       semantify.it
 Version:           0.1.0
 Author:            semantify.it
-Author URI:        www.semantify.it
+Author URI:        semantify.it
 Text Domain:       semantify_it
 Domain Path:       /languages
 Requires at least: 3.0.1
