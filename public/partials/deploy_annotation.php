@@ -39,8 +39,10 @@ if(!( (!$postid) || ($postid=='0') || ($postid==false) || ($postid=='') )) {
 
     $annotationID = $this->h->loadContent('annotationID');
 
+    //echo "id:".$annotationID;
+
     $annotation = '';
-    if (($annotationID != '') || ($annotationID != '0')) {
+    if (($annotationID != '') || ($annotationID != '0') || ($annotationID != 0)) {
        /* load annotation by id */
 
         $annotation = $Semantify->getAnnotation($annotationID);
