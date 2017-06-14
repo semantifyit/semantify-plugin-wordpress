@@ -42,12 +42,14 @@ if(!( (!$postid) || ($postid=='0') || ($postid==false) || ($postid=='') )) {
     //echo "id:".$annotationID;
 
     $annotation = '';
-    if (($annotationID != '') || ($annotationID != '0') || ($annotationID != 0)) {
+    $annotationID = trim($annotationID);
+
+    if (($annotationID != '') && ($annotationID != '0') && ($annotationID != 0) ) {
        /* load annotation by id */
 
         $annotation = $Semantify->getAnnotation($annotationID);
 
-    } else if($annotationByURL==1) {
+    } else if($annotationByURL=="1") {
         /* load annotation by url */
 
         $url = get_permalink( $postid );
@@ -55,7 +57,7 @@ if(!( (!$postid) || ($postid=='0') || ($postid==false) || ($postid=='') )) {
         //echo "#annotation:".$annotation."#";
     }
 
-    if (($annotation != '') || ($annotation != '0') || ($annotation != NULL)) {
+    if (($annotation != '') && ($annotation != '0') && ($annotation != NULL) && ($annotation!='{}')) {
             $html = $Semantify->cover_annotation_into_html($annotation);
             echo $html;
     }

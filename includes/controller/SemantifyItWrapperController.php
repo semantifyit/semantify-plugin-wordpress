@@ -123,7 +123,7 @@ class SemantifyItWrapperController
     public function isURLAnnotationAvailable($url){
         $json = $this->model->getAnnotationByURL($url);
         $content = @json_decode($json);
-        if ((!$json) || (isset($content->message))) {
+        if ((!$json) || (isset($content->message) || (trim($json)=="{}"))) {
             return false;
         }
         return true;
