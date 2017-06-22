@@ -71,7 +71,7 @@ class Semantify_it {
 
 
 		$this->plugin_name = 'semantify_it';
-		$this->version = '0.1.2';
+		$this->version = '0.1.3';
 
         $this->load_dependencies();
 		$this->set_locale();

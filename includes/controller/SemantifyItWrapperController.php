@@ -177,7 +177,11 @@ class SemantifyItWrapperController
 
             $last = "";
             /* if we have a more types, then we sort them */
-            usort($annotationListFromAPI, array($this, 'type_sort'));
+            @usort($annotationListFromAPI, array($this, 'type_sort'));
+
+            if(!is_array($annotationListFromAPI)){
+                return $annotationList;
+            }
 
             foreach ($annotationListFromAPI as $item) {
 

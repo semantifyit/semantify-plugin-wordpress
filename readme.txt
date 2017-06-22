@@ -2,7 +2,7 @@
 Contributors: semantify
 Tags: annotations, schema.org, semantify
 Plugin Name:       semantify.it
-Version:           0.1.2
+Version:           0.1.3
 Author:            semantify.it
 Author URI:        semantify.it
 Text Domain:       semantify_it
@@ -46,7 +46,8 @@ Yes, just visit our page semantify.it and register.
 * Fixes for automatic annotation retrieval by the URL
 = 1.2 =
 * Fixed case when annotation was not displayed on main page with turned on annotation retrieval by the URL
-
+= 1.3 =
+* Fixed error reporting when you have no api key
 
 == Upgrade Notice ==
 
