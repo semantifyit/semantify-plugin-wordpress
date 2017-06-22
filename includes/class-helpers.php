@@ -171,6 +171,8 @@ class Helpers
             $raw = get_option($this->plugin_name . "-" . $slug);
         }
 
+        //echo "content:".$raw;
+
         if ($raw === false) {
             return false;
         } else {
