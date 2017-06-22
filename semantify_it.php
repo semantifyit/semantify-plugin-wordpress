@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       semantify.it
  * Description:       Deploy your annotations from semantify.it to your wordpress website.
- * Version:           0.1.1
+ * Version:           0.1.2
  * Author:            semantify.it
  * Author URI:        www.semantify.it
  * Text Domain:       semantify_it
