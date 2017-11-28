@@ -57,6 +57,25 @@ class SemantifyItWrapperController
         $this->model = $model;
     }
 
+    /**
+     *
+     * showing errors
+     * true  => errors are shown
+     * false => errors are hidden
+     *
+     * @param boolean $error
+     */
+    public function setError($warnings)
+    {
+        $this->warnings = $warnings;
+    }
+
+    public function setWarnings($warnings)
+    {
+        $this->warnings = $warnings;
+    }
+
+
 
 
     /**
@@ -155,6 +174,8 @@ class SemantifyItWrapperController
         */
 
         $json = $this->model->getAnnotationList();
+        //echo "<pre>"
+        //var_dump($json);
 
         //if no data received
         if (!$json) {
@@ -167,6 +188,8 @@ class SemantifyItWrapperController
         if ((isset($annotationListFromAPI->message))) {
             return $annotationList;
         }
+
+        $annotationListFromAPI = $annotationListFromAPI->data;
 
         //echo is_array($annotationListFromAPI);
         //var_dump($annotationListFromAPI);
