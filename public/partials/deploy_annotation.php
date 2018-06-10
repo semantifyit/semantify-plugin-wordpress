@@ -26,12 +26,14 @@ if ( is_home() ) {
 if(!( (!$postid) || ($postid=='0') || ($postid==false) || ($postid=='') )) {
 
     $apiKey = $this->h->loadContent('api_key');
+    $apiSecret = $this->h->loadContent('api_secret');
+
 
     if(!$apiKey){
         return;
     }
 
-    $Semantify = new SemantifyItWrapperController($apiKey);
+    $Semantify = new SemantifyItWrapperController($apiKey, $apiSecret);
 
     $annotationByURL = $this->h->loadContent('annotationByURL');
 
