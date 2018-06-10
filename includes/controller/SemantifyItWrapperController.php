@@ -31,14 +31,9 @@ class SemantifyItWrapperController
      *
      * @param string $key
      */
-    function __construct($key="")
+    function __construct($key="", $secret="")
     {
-
-        if($key!=""){
-            $this->model = new SemantifyItWrapper($key);
-        }else{
-            $this->model = new SemantifyItWrapper();
-        }
+         $this->model = new SemantifyItWrapper($key, $secret);
     }
 
     /**

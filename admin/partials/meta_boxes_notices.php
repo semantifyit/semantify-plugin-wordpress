@@ -3,16 +3,12 @@
 $admin_url = admin_url( 'admin.php?page=' . $this->plugin_name );
 
 
-
-
-
 if(($apikey=='')||($apikey=='0')){
     echo"</br>";
 
     $this->h->displayMessage("error","<b>".__('No API key', $this->plugin_name)."</b>"."<br>".__('You haven`t added an API key and plugin is not working yet. Please add an API key in ', $this->plugin_name)."<a href='".$admin_url."'>Settings</a>" );
     die();
 }
-
 
 
 if($annotationByURL){
@@ -29,8 +25,4 @@ if($annotationByURL){
             echo $this->h->displayMessage("success","<b>".__('Automatic annotation found', $this->plugin_name)."</b>"."<br>".__('Annotation for this site was found and deployed on this webpage.', $this->plugin_name));
         }
     }
-
-
-
-
 }

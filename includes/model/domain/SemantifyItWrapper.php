@@ -16,7 +16,7 @@ class SemantifyItWrapper extends SemantifyIt
      *
      * @param string $key
      */
-    public function __construct($key = "")
+    public function __construct($key = "", $secret = "")
     {
 
         $development = array("sti.dev", "staging.semantify.it", "demo.semantify.it");
@@ -28,9 +28,12 @@ class SemantifyItWrapper extends SemantifyIt
             error_reporting(E_ALL);
         }
 
-
         if ($key != "") {
             $this->setWebsiteApiKey($key);
+        }
+
+        if ($secret != "") {
+            $this->setWebsiteApiSecret($secret);
         }
 
     }

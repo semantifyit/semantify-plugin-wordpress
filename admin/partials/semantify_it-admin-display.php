@@ -17,7 +17,8 @@
 use \STI\SemantifyIt\Controller\SemantifyItWrapperController;
 
 $apikey = $this->h->loadContent('api_key');
-$Semantify = new SemantifyItWrapperController($apikey);
+$apisecret = $this->h->loadContent('api_secret');
+$Semantify = new SemantifyItWrapperController($apikey, $apisecret);
 
 $admin = 1;
 
@@ -54,6 +55,12 @@ $admin = 1;
                 <?php esc_attr_e( 'Please input your Website API key to start using semantify.it on your webpage. If you don\'t have a API key please visit', $this->plugin_name ); ?> <a href="https://www.semantify.it">https://www.semantify.it</a>
             </p>
             <input type="text" name="data[api_key]" class="code large-text" value="<?php echo $this->h->loadContent('api_key'); ?>"><br/>
+
+            <h4><span><?php esc_attr_e( 'Website API Secret', $this->plugin_name ); ?></span></h4>
+            <p>
+                <?php esc_attr_e( 'Please input your Website API secret'); ?>
+            </p>
+            <input type="text" name="data[api_secret]" class="code large-text" value="<?php echo $this->h->loadContent('api_secret'); ?>"><br/>
             <br/>
             <h4><span><?php esc_attr_e( 'Automatic Annotation search by URL', $this->plugin_name ); ?></span></h4>
             <p>
