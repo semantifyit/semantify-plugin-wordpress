@@ -180,12 +180,19 @@ class Semantify_it_Admin {
 
     }
 
+
     function meta_boxes_display($post) {
         include_once 'partials/meta_boxes_display.php';
     }
 
+    function migration_manager() {
+        include_once 'partials/migration_manager.php';
+    }
 
 
+    function my_plugin_add_thickbox() {
+        add_thickbox();
+    }
 
 
 

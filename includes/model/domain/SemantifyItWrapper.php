@@ -23,7 +23,7 @@ class SemantifyItWrapper extends SemantifyIt
 
         //switch to stagging server if it is on the development server
         if(in_array($_SERVER['HTTP_HOST'],$development)) {
-            $this->setLive(false);
+            $this->setLive(true);
             $this->setError(true);
             error_reporting(E_ALL);
         }

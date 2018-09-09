@@ -195,6 +195,16 @@ class Semantify_it {
         $this->loader->add_action( 'add_meta_boxes',$plugin_admin, 'add_meta_boxes_admin' );
 
 
+        /**
+         * Migration to instant annotations
+         */
+        $this->loader->add_action( 'plugins_loaded',$plugin_admin, 'migration_manager' );
+
+        $this->loader->add_action( 'admin_menu',$plugin_admin, 'my_plugin_add_thickbox' );
+
+
+
+
 
     }
 
