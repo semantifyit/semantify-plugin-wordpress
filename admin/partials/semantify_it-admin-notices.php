@@ -30,3 +30,6 @@ if( ((isset($annotations)) && (count($annotations)<=3)) || (isset($admin)) ){
 
     }
 }
+
+$this->h->displayMessage("notice","<b>".__('This plugin is deprecated', $this->plugin_name)."</b>"."<br>".__('Please install our new plugin ', $this->plugin_name)."<a class='thickbox' href='".esc_url( network_admin_url('plugin-install.php?tab=plugin-information&plugin=' . "instant-annotation" . '&TB_iframe=true&width=600&height=550' ) )."'>Instant Annotation</a><br/>".__('All data from Semantify plugin have already been migrated to Instant Annotation, so all you need to do is only to ', $this->plugin_name)."<a class='thickbox' href='".esc_url( network_admin_url('plugin-install.php?tab=plugin-information&plugin=' . "instant-annotation" . '&TB_iframe=true&width=600&height=550' ) )."'>install it</a>");
+echo "<br/>";
