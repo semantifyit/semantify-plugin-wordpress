@@ -2,7 +2,7 @@
 Contributors: semantify
 Tags: annotations, schema.org, semantify
 Plugin Name:       semantify.it
-Version:           0.1.6
+Version:           0.1.5
 Author:            semantify.it
 Author URI:        semantify.it
 Text Domain:       semantify_it
@@ -52,8 +52,6 @@ Yes, just visit our page semantify.it and register.
 * Updated API to new version
 = 1.5 =
 * Support for websites api secret
-= 1.6 =
-* Migration to new plugin
 
 == Upgrade Notice ==
 
