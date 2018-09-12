@@ -46,8 +46,8 @@ $list        = $this->h->makeList($annotations,$annotationID);
                 <input type="hidden" name="config[action]" value="save_api_key">
                 <input type="hidden" name="config[type]" value="<?php echo $this->h->config["type"]; ?>">
                 <input type="hidden" name="config[postid]" value="<?php echo $this->h->config["postid"]; ?>">
-                <select name="data[annotationID]"><?php echo $list; ?></select>
-                <button class="button-primary" id="load-url-form-submit-button"><?php esc_attr_e( 'Attach annotation' ); ?></button>
+                <select name="data[annotationID]" disabled><?php echo $list; ?></select>
+                <button class="button-primary" id="load-url-form-submit-button" disabled><?php esc_attr_e( 'Attach annotation' ); ?></button>
                 <div id="spinner" class="spinner"></div>
             </div>
 
